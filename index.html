@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">
+<title>Jordan McGuire's Week 4 Concept</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+ </head>   
+<body>
+    <div class="center-section">
+    <div class="slidetops">
+        <div class="slidetop" style="display:block;">Welcome to the employee training program!</div>
+        <div class="slidetop" style="display:none;">How often does this particular training happen?</div>
+        <div class="slidetop" style="display:none;">How many credits do you have to earn each month?</div>
+        <div class="slidetop" style="display:none;">When does this new policy take effect?</div>
+        <div class="slidetop" style="display:none;">Can you, as an employee, propose new trainings?</div>
+        <div class="slidetop" style="display:none;">Congratulations, you have completed the training!</div>
+    </div>
+    <div class="slideshow-container">
+        <div class="slide" style="display:block;">
+            <p>This site is designed to provide an engaging and interactive experience for employees. Please click the <b>?</b> if you need further time with the material for these questions, and click the <b>></b> when you're ready to progress. Best of luck!</p>
+        </div>
+        <div class="slide" style="display:none;" data-require-answer="true">
+            <label><input type="radio" name="q1" onclick="checkAnswer(this, false)">Daily</label><br><br>
+            <label><input type="radio" name="q1" onclick="checkAnswer(this, false)">Weekly</label><br><br>
+            <label><input type="radio" name="q1" onclick="checkAnswer(this, false)">Monthly</label><br><br>
+            <label><input type="radio" name="q1" onclick="checkAnswer(this, true)">Quarterly</label><br><br>
+        </div>
+        <div class="slide" style="display:none;">
+            <label><input type="radio" name="q2" onclick="checkAnswer(this, false)">Half a credit</label><br><br>
+            <label><input type="radio" name="q2" onclick="checkAnswer(this, true)">One credit</label><br><br>
+            <label><input type="radio" name="q2" onclick="checkAnswer(this, false)">Two credits</label><br><br>
+            <label><input type="radio" name="q2" onclick="checkAnswer(this, false)">Three credits</label><br><br>
+        </div>
+        <div class="slide" style="display:none;">
+            <label><input type="radio" name="q3" onclick="checkAnswer(this, false)">It never does, things are staying the same</label><br><br>
+            <label><input type="radio" name="q3" onclick="checkAnswer(this, false)">Whenever we, the employees, want them to</label><br><br>
+            <label><input type="radio" name="q3" onclick="checkAnswer(this, true)">Next quarter, I read my email</label><br><br>
+            <label><input type="radio" name="q3" onclick="checkAnswer(this, false)">Next year, just in time for me to forget</label><br><br>
+        </div>
+        <div class="slide" style="display:none;">
+            <label><input type="radio" name="q4" onclick="checkAnswer(this, false)">Never, the company doesn't value my input</label><br><br>
+            <label><input type="radio" name="q4" onclick="checkAnswer(this, true)">Of course, and I even get credits for doing so</label><br><br>
+            <label><input type="radio" name="q4" onclick="checkAnswer(this, false)">Only supervisors can</label><br><br>
+            <label><input type="radio" name="q4" onclick="checkAnswer(this, false)">Only the corporate training team can</label><br><br>
+        </div>
+        <div class="slide" style="display:none;">
+            <p>You can now refer to the training materials at any time by clicking the <b>?</b> button. Thank you for your particpation and enjoy your first learning credit!</p>
+        </div>
+    </div>
+    <div class="slideshowBottom">
+    <div class="credits-progress-row">
+    <div class="creditsCompleted">Credit Collected: 0 / 1 </div>
+
+    <label for="percentageCompleted">Percentage Completed</label>
+        <progress id="percentageCompleted" value="0" max="5">0%</progress>
+    </div>
+    <div class="slideshow-buttons-row">
+        <div class="slideshow-buttons">
+     <!-- <button class="slideshowButton1" onclick="changeSlide(-1)"><</button> --> 
+        <button class="slideshowButton2" onclick="changeSlide(1)">></button>
+    </div>
+    </div>
+</div>
+    </div>
+
+
+<footer>
+    <button id="referBook" onclick="referBook()">?</button>
+    <p>Handcoded with ❤️ by Jordan McGuire, Click <a href="www.google.com" target="_blank"> Here</a> to Download the Source Materials </p>
+        <div class="feedback-section">
+        <button class="feedbackButton" onclick="showFeedbackForm()">Feedback, Questions, Or Propose a Training</button>
+    </div>
+</footer>
+<div id="feedbackForm">
+    <label for="name">Name or Employee ID: </label><input type="text" id="name" name="name"><br>
+    <label for="email">Enter your email: </label><input type="email" id="email" name="email"><br>
+    <br>
+    <textarea rows="4" cols="40" placeholder="Your comments, suggestions, or questions:"></textarea><br>
+    <button onclick="hideFeedbackForm()">Close</button>
+    <button onclick="submitButton()" type="submit">Submit</button>
+</div>
+<script>
+function submitButton() {
+    alert("Thank you for trying to submit your feedback! This feature is not yet implemented as this is a live demo of a potential training process. Thank you for trying it out!");
+    hideFeedbackForm();
+}
+function referBook() {
+    alert("This feature is not yet implemented as this is a live demo of a potential training process. Thank you for trying it out!");
+}
+let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slidetops = document.querySelectorAll('.slidetop');
+
+        function showSlide(n) {
+             slides.forEach((slide, i) => {
+             slide.style.display = (i === n) ? 'block' : 'none';
+  });
+              slidetops.forEach((top, i) => {
+            top.style.display = (i === n) ? 'block' : 'none';
+              });
+
+              document.getElementById('percentageCompleted').value = n + 1;
+
+              const creditDisplay = document.querySelector('.creditsCompleted');
+              if (n === slides.length -1) {
+                  creditDisplay.textContent = 'Credit Collected: 1 / 1';
+              } else {
+                  creditDisplay.textContent = 'Credit Collected: 0 / 1';
+              }
+
+              const currentSlideElement = slides[n];
+              const nextButton = document.querySelector('.slideshowButton2');
+              const requiresAnswer = currentSlideElement.dataset.requireAnswer === "true";
+
+              if (requiresAnswer) {
+                  nextButton.disabled = true;
+                  nextButton.style.opacity = 0.5;
+              } else {
+                  nextButton.disabled = false;
+                  nextButton.style.opacity = 1;
+              }
+} 
+            
+
+
+function changeSlide(n) {
+  currentSlide += n;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+  if (currentSlide >= slides.length) currentSlide = 0;
+  showSlide(currentSlide);
+}
+showSlide(currentSlide);
+function showFeedbackForm() {
+    document.getElementById('feedbackForm').style.display = 'block';
+}
+function hideFeedbackForm() {
+    document.getElementById('feedbackForm').style.display = 'none';
+    }
+
+function checkAnswer(input, isCorrect) {
+    const slide = input.closest('.slide');
+    const nextButton = document.querySelector('.slideshowButton2');
+
+    if (isCorrect) {
+        nextButton.disabled = false;
+        nextButton.style.opacity = 1;
+        nextButton.style.pointerEvents = "auto";
+        alert("Correct answer! Click the arrow to continue to the next slide.");
+    } else {
+        nextButton.disabled = true;
+        nextButton.style.opacity = 0.5;
+        nextButton.style.pointerEvents = "none";
+        alert("Incorrect answer, please try again :), you can refer to the training materials if you need help, click the ? icon to visit them.");
+   
+        const currentSlideElement = slides[currentSlide];
+        const radios = currentSlideElement.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.checked = false;
+        });
+
+    }
+}
+</script>
+</body>
+</html>
